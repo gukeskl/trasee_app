@@ -68,12 +68,6 @@ export default {
     tableData: [],
 
     headers: [
-      {
-        text: "",
-        align: "start",
-        sortable: false,
-        value: "name",
-      },
       { text: "Date", value: "date" },
       { text: "Time", value: "time" },
       { text: "Quantity", value: "quantity" },

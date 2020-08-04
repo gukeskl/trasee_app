@@ -1,10 +1,19 @@
 <template>
   <div id="chartsTemplate">
     <div class="back-btn">
-      <div class="status">Last Status: {{lastStatus.date }} / {{lastStatus.quantity}} persons </div>
+      <div class="status">
+        Last Status: {{ lastStatus.date }} / {{ lastStatus.quantity }} persons
+      </div>
       <v-btn class="btn-color" @click="goToForm">FORM</v-btn>
     </div>
-    <chart class="chart panel" />
+    <div class="chart-panel panel">
+        <v-btn-toggle class="btn-toggle" v-model="toggle" mandatory dark>
+          <v-btn> Day </v-btn>
+          <v-btn> Week </v-btn>
+          <v-btn> Month </v-btn>
+        </v-btn-toggle>
+      <chart class="chart"/>
+    </div>
   </div>
 </template>
 
@@ -17,11 +26,16 @@ export default {
   components: {
     Chart,
   },
-  data: () => ({}),
+  data: () => ({
+    toggle: ""
+  }),
   computed: {
     ...mapGetters(["getSortedData"]),
     lastStatus: function() {
-      return this.getSortedData[this.getSortedData.length-1]
+      return this.getSortedData[this.getSortedData.length - 1];
+    },
+    getToggle: function() {
+      return toggle
     }
   },
   methods: {
@@ -53,14 +67,22 @@ export default {
   margin-right: 20px;
   font-size: 25px;
   color: #ffffffd5;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 .btn-color {
   background-color: rgb(185, 185, 185) !important;
 }
-
-.chart {
+.btn-toggle{
+  margin-left: 50px !important;
+  margin-top: 10px !important;
+  border-radius: 5px  !important;
+}
+.chart-panel {
   height: 100%;
   width: 100%;
+}
+.chart {
+  width: 100%;
+  height: 90%;
 }
 </style>
