@@ -12,7 +12,7 @@
           <v-btn> Week </v-btn>
           <v-btn> Month </v-btn>
         </v-btn-toggle>
-      <chart class="chart"/>
+      <chart class="chart" :toggle="getToggle" :key="getToggle"/>
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
     Chart,
   },
   data: () => ({
-    toggle: ""
+    toggle: 0
   }),
   computed: {
     ...mapGetters(["getSortedData"]),
@@ -35,7 +35,7 @@ export default {
       return this.getSortedData[this.getSortedData.length - 1];
     },
     getToggle: function() {
-      return toggle
+      return this.toggle
     }
   },
   methods: {
